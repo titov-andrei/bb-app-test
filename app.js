@@ -72,13 +72,14 @@ app.post('/installed', (req, res, next) => {
 
 // Include atlassian-connect-express middleware
 app.use(addon.middleware());
+const staticDir = path.join(__dirname, 'public');
+
+// Enable static resource fingerprinting for far future expires caching in production
+app.use(expiry(app, {dir: staticDir, debug: devEnv}));
 
 // Mount the static files directory
 // Anything in ./public is served up as static content
-const staticDir = path.join(__dirname, 'public');
 app.use(express.static(staticDir));
-// Enable static resource fingerprinting for far future expires caching in production
-app.use(expiry(app, {dir: staticDir, debug: devEnv}));
 // Add an hbs helper to fingerprint static resource urls
 hbs.registerHelper('furl', function(url){ return app.locals.furl(url); });
 
