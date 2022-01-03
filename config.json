@@ -50,7 +50,7 @@
             "dialect": "sqlite3",
             "type": "memory"
         },
-        "localBaseUrl": "https://ngrok-url"
+        "localBaseUrl": "https://d53e-62-148-157-163.ngrok.io"
     },
     // Configuration for production, which is enabled by setting
     // the NODE_ENV=production environment variable.
